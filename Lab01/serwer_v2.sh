@@ -1,5 +1,5 @@
 #!/bin/bash
-if [ -z "$1" ]; then
+if [ -z "$2" ]; then
     set -- "0"
 fi
 
@@ -10,7 +10,7 @@ scor1=0
 scor2=0
 remis=0
 
-for i in $(seq $1); do
+for i in $(seq $2); do
     echo "start" > komenda.txt
     while [ ! -f los1.txt ]; do sleep 0.1; done
     while [ ! -f los2.txt ]; do sleep 0.1; done
@@ -21,7 +21,7 @@ for i in $(seq $1); do
 
     if [ $los1 = $los2 ]; then
 	remis=$((remis+1))
-	echo "remis" >> gra.log
+	echo "remis\n" >> gra.log
     elif [ $los1 = "papier" ]; then
 	if [ $los2 = "kamien" ]; then
 	    scor1=$((scor1+1))
