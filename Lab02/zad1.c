@@ -11,15 +11,14 @@ int main()
 	pid_t pid;
 
 	g_d = malloc(sizeof(int));
-	g_d[0] = 3;
+	* g_d = 3;
 
 	int l_s = 4;
 	int * l_d;
 	l_d = malloc(sizeof(int));
-	l_d[0] = 5;
+	* l_d = 5;
 
 	FILE * fptr = fopen("./test.txt", "w");
-	char c;
 
 	// fork a child process
 	pid = fork();
@@ -41,13 +40,13 @@ int main()
 
 		/**/
 		g_s = 0;
-		g_d[0] = 0;
+		*g_d = 0;
 		l_s = 0;
-		l_d[0] = 0;
+		*l_d = 0;
 		printf("g_s = %d\n", g_s);
-		printf("g_d = %d\n", g_d[0]);
+		printf("g_d = %d\n", *g_d);
 		printf("l_s = %d\n", l_s);
-		printf("l_d = %d\n", l_d[0]);
+		printf("l_d = %d\n", *l_d);
 		/**/
 		/**/
 		// Read contents from file
@@ -57,10 +56,8 @@ int main()
 	}
 	else { // parent process
 		// parent will wait for child to complete
-		// wait(NULL);
+		wait(NULL);
 
-		// getchar();
-		
 		// return 0;
 		
 		int b;
@@ -73,9 +70,9 @@ int main()
 		
 		/**/
 		printf("g_s = %d\n", g_s);
-		printf("g_d = %d\n", g_d[0]);
+		printf("g_d = %d\n", *g_d);
 		printf("l_s = %d\n", l_s);
-		printf("l_d = %d\n", l_d[0]);
+		printf("l_d = %d\n", *l_d);
 		/**/
 		/**/
 		// Read contents from file
